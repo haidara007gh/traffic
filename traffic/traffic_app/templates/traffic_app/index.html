@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caption Bot</title>
+    <link rel="stylesheet" href="{% static 'traffic_app/styles.css' %}">
+
+</head>
+<body>
+    <header>
+        <h1>Traffic Sign Recognition Bot</h1>
+    </header>
+    <main>
+        <div id="caption-container">
+            <p id="generated-caption">{{class}}</p>
+        </div>
+        <div id="image-container">
+            <img src="{{file_url}}" alt="Uploaded Image" id="uploaded-image">
+        </div>
+        <form action = "{% url 'index' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" id="image-input" accept="image/*" name="image">
+            <div>
+                <button type="submit" id="generate-caption-btn">Identify the traffic sign</button>
+            </div>
+        </form>        
+    </main>
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
